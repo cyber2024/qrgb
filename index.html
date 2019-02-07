@@ -34,23 +34,28 @@
         textarea{
             width: 100%;
         }
+        .controls{
+            display: flex;
+        }
     </style>
     <h1>QRGB</h1>
-    <div>
-        <label for="">Pixel Size</label>
-        <input type="number" id="scale" placeholder="pixelScale" value=1 minvalue=1/>
-    </div>
-    <div>
-        <label for="">R Strength</label>
-        <input type="number" id="r"  value=255 minvalue=1/>
-    </div>
-    <div>
-        <label for="">G Strength</label>
-        <input type="number" id="g"  value=255 minvalue=1/>
-    </div>
-    <div>
-        <label for="">B Strength</label>
-        <input type="number" id="b" value=255 minvalue=1/>
+    <div class="controls">
+        <div>
+            <label for="">Pixel Size</label>
+            <input type="number" id="scale" placeholder="pixelScale" value=1 minvalue=1/>
+        </div>
+        <div>
+            <label for="">R Strength</label>
+            <input type="number" id="r"  value=255 minvalue=1/>
+        </div>
+        <div>
+            <label for="">G Strength</label>
+            <input type="number" id="g"  value=255 minvalue=1/>
+        </div>
+        <div>
+            <label for="">B Strength</label>
+            <input type="number" id="b" value=255 minvalue=1/>
+        </div>
     </div>
     <div>
         <label for="">Data</label>
@@ -143,7 +148,7 @@
             for(let y = 0; y < height; y+= 1*pixelScale){
                 for(let x = 0; x < width; x+= 1*pixelScale){
                     ctx.beginPath();
-                    ctx.fillStyle = `rgb(${getNextColor()},${getNextColor()},${getNextColor()})`;
+                    ctx.fillStyle = `rgb(${getNextColor()*strength.r},${getNextColor()*strength.g},${getNextColor()*strength.b})`;
                     ctx.fillRect(x,y,1*pixelScale, 1*pixelScale);
                 }
             }
@@ -157,7 +162,7 @@
                     if(arrayIndex >= array.length)
                         arrayIndex = 0;
                 }
-                return c*255;
+                return c;
             }
         }
         
